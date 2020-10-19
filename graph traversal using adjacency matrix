@@ -1,0 +1,44 @@
+#include<stdio.h>
+#define V 5
+void init(int arr[][V])
+{
+    int i,j;
+    for(i = 0; i < V; i++)
+        for(j = 0; j < V; j++)
+            arr[i][j] = 0;
+}
+void addedge(int arr[][V],int src, int data)
+{
+     arr[src][data] = 1;
+}
+
+void printadjmatrix(int arr[][V])
+{
+     int i, j;
+
+     for(i = 0; i < V; i++)
+     {
+         for(j = 0; j < V; j++)
+         {
+             printf("%d ", arr[i][j]);
+         }
+         printf("\n");
+     }
+}
+int main()
+{
+    int adjmatrix[V][V];
+
+    init(adjmatrix);
+    addedge(adjmatrix,0,1);
+    addedge(adjmatrix,0,2);
+    addedge(adjmatrix,0,3);
+    addedge(adjmatrix,1,3);
+    addedge(adjmatrix,1,4);
+    addedge(adjmatrix,2,3);
+    addedge(adjmatrix,3,4);
+
+    printadjmatrix(adjmatrix);
+
+    return 0;
+}
