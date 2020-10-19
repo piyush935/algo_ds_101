@@ -1,0 +1,92 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+    int data;
+    struct node *left;
+    struct node *right;
+};
+struct node *create()
+{
+    struct node *newnode;
+    int x;
+    printf("\nenter the data(-1 for no node):");
+    scanf("%d",&x);
+    if(x==-1){
+        return NULL;
+    }
+    newnode = (struct node *)malloc(sizeof(struct node)); 
+    newnode->data=x;
+    printf("\nenter the left child %d",x);
+    newnode->left=create();
+    printf("\nenter the right child %d",x);
+    newnode->right=create();
+    return newnode;
+
+}
+void preorder(struct node *root)
+{
+    if(root==0)
+    {
+        return;
+    }
+    else
+    {
+        printf(" %d",root->data);
+        preorder(root->left);
+        preorder(root->right);
+    }
+}
+void inorder(struct node *root)
+{
+    if(root==0)
+    {
+        return;
+    }
+    else
+    {
+        inorder(root->left);
+        printf(" %d",root->data);
+        inorder(root->right);
+    }
+}
+void postorder(struct node *root)
+{
+    if(root==0)
+    {
+        return;
+    }
+    else
+    {
+        postorder(root->left);
+        postorder(root->right);
+        printf(" %d",root->data);
+    }
+}
+int main()
+{
+    struct node *root=0;
+    root=create();
+    /*
+    
+                   20
+                 /    \
+                /      \
+               5       30
+             /   \     /\
+            /     \   /  \
+           1      15 25  40
+                /          \
+               /            \
+              9             45
+            /   \          /
+           /     \        /
+          7      12      42
+                                */
+    printf("\npreorder is:");
+    preorder(root);
+    printf("\ninorder is:");
+    inorder(root);
+    printf("\npostorder is:");
+    postorder(root);
+    
+}
